@@ -1,4 +1,5 @@
-# Module providing openpyxl extensions for framework
+"""Module providing openpyxl extensions for framework"""
+
 from openpyxl import Workbook, load_workbook
 
 
