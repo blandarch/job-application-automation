@@ -69,7 +69,7 @@ class TestHelpers:
 
         Args:
             sheet_name (string): sheet name where to insert the data
-            data (list): a list of a list of data containing the
+            data (list): a list of a list of data containing the rows and columns in list format
             filename_to_save (string): name of the file for it to be saved.
             filename_to_open (string, optional): name of the file to be opened if parameter
                 is not empty. Defaults to None.
@@ -77,6 +77,23 @@ class TestHelpers:
         # excel_framework = ExcelFramework(filename_to_open)
         excel_framework = ExcelFramework(filename_to_open)
         excel_framework.add_data(sheet_name, data)
+        excel_framework.save_workbook(filename_to_save)
+
+    @staticmethod
+    def create_workbook_from_nearest_available_row(
+        sheet_name: str, data: list, filename_to_save: str, filename_to_open: str = None
+    ):
+        """_summary_ : reusable method to test insertion of data from nearest available row
+
+        Args:
+            sheet_name (str): sheet name where to insert the data
+            data (list): a list of a list of data containing the rows and columns in list format
+            filename_to_save (str): name of the file for it to be saved.
+            filename_to_open (str, optional): name of the file to be opened if parameter
+                is not empty. Defaults to None.
+        """
+        excel_framework = ExcelFramework(filename_to_open)
+        excel_framework.add_data_to_empty_row_cell(sheet_name, data)
         excel_framework.save_workbook(filename_to_save)
 
     @staticmethod

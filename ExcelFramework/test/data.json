@@ -20,5 +20,17 @@
         ],
         "saveFilename": "SampleDataWithFilenameSaveAs.xlsx",
         "expectedOutputFilename": "ExpectedSampleDataWithFilename.xlsx"
+    },
+    "addDataToEmptyRowCell": {
+        "openFilename": "/test/SampleDataWithFilename.xlsx",
+        "sheetName": "Without Filename",
+        "data": [
+            ["Band", "Song"],
+            ["Black Country, New Road", "Concorde"],
+            ["The Shins", "Long Way Down"],
+            ["Dutch Criminal Record", "00s Nostalgia"]
+        ],
+        "saveFilename": "SampleDataWithFilenameSaveAs.xlsx",
+        "expectedOutputFilename": "ExpectedSampleDataEmptyRowCell.xlsx"
     }
 }
