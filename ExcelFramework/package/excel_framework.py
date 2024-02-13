@@ -48,14 +48,23 @@ class ExcelFramework:
             filename (_ZipFileFileProtocol): filename of the file.
         """
         self.workbook = load_workbook(filename)
-    
-    def cell_is_not_empty(self, sheet_name, cell_name):
+
+    def __cell_is_occupied(self, sheet_name: str, cell_name: str):
         sheet = self.workbook[sheet_name]
         cell = sheet[cell_name]
         return cell.value is not None
 
-    # def add_data_to_empty_cell_with_existing_workbook(self, sheet_name, data):
-    #     sheet = self.workbook[sheet_name]
-    #     for row_index, row_data in enumerate(data, start=1):
-    #         for col_index, cell_data in enumerate(row_data, start=1):
-    #             sheet.a
+    def add_data_to_empty_row_cell(self, sheet_name: str, data: list):
+        """_summary_: This method identifies the nearest available row to add
+            data in an Excel workbook when the first few rows are already occupied.
+
+        Args:
+            sheet_name (str): _description_
+            data (list): _description_
+        """
+        row_num = 1
+
+        while not self.__cell_is_occupied(sheet_name, f"A{row_num}"):
+            row_num = row_num + 1
+
+        self.add_data(sheet_name, data, row_num)
