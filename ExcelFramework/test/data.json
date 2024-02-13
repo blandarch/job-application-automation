@@ -7,10 +7,10 @@
             ["Alice", 25]
         ],
         "saveFilename": "SampleDataWithoutFilename.xlsx",
-        "expectedOutputFilename": "ExpectedSampleDataWithoutFilename.xlsx"
+        "expectedOutputFilename": "/ExcelFramework/test/ExpectedOutput/ExpectedSampleDataWithoutFilename.xlsx"
     },
     "addDataWithFilename": {
-        "openFilename": "/test/SampleDataWithFilename.xlsx",
+        "openFilename": "/ExcelFramework/test/SampleDataWithFilename.xlsx",
         "sheetName": "Without Filename",
         "data": [
             ["Band", "Song"],
@@ -19,10 +19,10 @@
             ["Dutch Criminal Record", "00s Nostalgia"]
         ],
         "saveFilename": "SampleDataWithFilenameSaveAs.xlsx",
-        "expectedOutputFilename": "ExpectedSampleDataWithFilename.xlsx"
+        "expectedOutputFilename": "/ExcelFramework/test/ExpectedOutput/ExpectedSampleDataWithFilename.xlsx"
     },
     "addDataToEmptyRowCell": {
-        "openFilename": "/test/SampleDataWithFilename.xlsx",
+        "openFilename": "/ExcelFramework/test/SampleDataWithFilename.xlsx",
         "sheetName": "Without Filename",
         "data": [
             ["Band", "Song"],
@@ -31,6 +31,6 @@
             ["Dutch Criminal Record", "00s Nostalgia"]
         ],
         "saveFilename": "SampleDataWithFilenameSaveAs.xlsx",
-        "expectedOutputFilename": "ExpectedSampleDataEmptyRowCell.xlsx"
+        "expectedOutputFilename": "/ExcelFramework/test/ExpectedOutput/ExpectedSampleDataEmptyRowCell.xlsx"
     }
 }

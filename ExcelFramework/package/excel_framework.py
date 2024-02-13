@@ -40,15 +40,6 @@ class ExcelFramework:
         """
         self.workbook.save(filename)
 
-    def load_workbook(self, filename: str):
-        """
-        load_workbook: method to use when loading an Excel Filename
-
-        Args:
-            filename (_ZipFileFileProtocol): filename of the file.
-        """
-        self.workbook = load_workbook(filename)
-
     def __cell_is_occupied(self, sheet_name: str, cell_name: str):
         sheet = self.workbook[sheet_name]
         cell = sheet[cell_name]

@@ -19,9 +19,8 @@ from .static_constants import (
 from .test_helpers import TestHelpers
 
 CURRENT_DIRECTORY = os.getcwd()
-EXPECTED_OUTPUT_DIRECTORY = CURRENT_DIRECTORY + "/test/ExpectedOutput/"
 
-with open("test/data.json", encoding="utf-8") as file:
+with open("ExcelFramework/test/data.json", encoding="utf-8") as file:
     data = json.load(file)
 
 
@@ -39,7 +38,7 @@ def test_add_data_without_filename():
         # Asserts the produced excel file is equal to true
         assert TestHelpers.validate_excel_files(
             data[ADD_DATA_WITHOUT_FILENAME][SAVE_FILENAME],
-            EXPECTED_OUTPUT_DIRECTORY
+            CURRENT_DIRECTORY
             + data[ADD_DATA_WITHOUT_FILENAME][EXPECTED_OUTPUT_FILENAME],
         ) == (True, "Excel files are equal.")
 
@@ -72,8 +71,7 @@ def test_add_data_with_existing_filename():
         # Asserts the produced excel file is equal to true
         assert TestHelpers.validate_excel_files(
             data[ADD_DATA_WITH_FILENAME][SAVE_FILENAME],
-            EXPECTED_OUTPUT_DIRECTORY
-            + data[ADD_DATA_WITH_FILENAME][EXPECTED_OUTPUT_FILENAME],
+            CURRENT_DIRECTORY + data[ADD_DATA_WITH_FILENAME][EXPECTED_OUTPUT_FILENAME],
         ) == (True, "Excel files are equal.")
 
     except FileNotFoundError as error:
@@ -105,8 +103,7 @@ def test_add_data_to_empty_row_cell():
         # Asserts the produced excel file is equal to true
         assert TestHelpers.validate_excel_files(
             data[ADD_DATA_EMPTY_ROW_CELL][SAVE_FILENAME],
-            EXPECTED_OUTPUT_DIRECTORY
-            + data[ADD_DATA_EMPTY_ROW_CELL][EXPECTED_OUTPUT_FILENAME],
+            CURRENT_DIRECTORY + data[ADD_DATA_EMPTY_ROW_CELL][EXPECTED_OUTPUT_FILENAME],
         ) == (True, "Excel files are equal.")
 
     except FileNotFoundError as error:
