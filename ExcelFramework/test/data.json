@@ -1,0 +1,24 @@
+{
+    "addDataWithoutFilename": {
+        "sheetName": "Sheet1",
+        "data": [
+            ["Name", "Age"],
+            ["John", 30],
+            ["Alice", 25]
+        ],
+        "saveFilename": "SampleDataWithoutFilename.xlsx",
+        "expectedOutputFilename": "ExpectedSampleDataWithoutFilename.xlsx"
+    },
+    "addDataWithFilename": {
+        "openFilename": "/test/SampleDataWithFilename.xlsx",
+        "sheetName": "Without Filename",
+        "data": [
+            ["Band", "Song"],
+            ["Black Country, New Road", "Concorde"],
+            ["The Shins", "Long Way Down"],
+            ["Dutch Criminal Record", "00s Nostalgia"]
+        ],
+        "saveFilename": "SampleDataWithFilenameSaveAs.xlsx",
+        "expectedOutputFilename": "ExpectedSampleDataWithFilename.xlsx"
+    }
+}
