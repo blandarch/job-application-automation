@@ -64,7 +64,7 @@ class ExcelFramework:
         """
         row_num = 1
 
-        while not self.__cell_is_occupied(sheet_name, f"A{row_num}"):
+        while self.__cell_is_occupied(sheet_name, f"A{row_num}"):
             row_num = row_num + 1
 
         self.add_data(sheet_name, data, row_num)
