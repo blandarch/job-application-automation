@@ -18,7 +18,7 @@ class ExcelFramework:
             self.workbook = Workbook()
             self.workbook.create_sheet("Sheet1")
 
-    def add_data(self, sheet_name, data, start_row=1, start_column=1):
+    def add_data(self, sheet_name: str, data: list, start_row=1, start_column=1):
         """Adds data to excel.
 
         Args:
@@ -32,7 +32,7 @@ class ExcelFramework:
             for col_index, cell_data in enumerate(row_data, start=start_column):
                 sheet.cell(row=row_index, column=col_index, value=cell_data)
 
-    def save_workbook(self, filename):
+    def save_workbook(self, filename: str):
         """save_workbook AI is creating summary for save_workbook
 
         Args:
@@ -40,7 +40,7 @@ class ExcelFramework:
         """
         self.workbook.save(filename)
 
-    def load_workbook(self, filename):
+    def load_workbook(self, filename: str):
         """
         load_workbook: method to use when loading an Excel Filename
 
