@@ -1,7 +1,7 @@
 name: Github CI/CD Actions
 on: [push]
 jobs:
-    Run-Pylint-Actions:
+    build:
         runs-on: ubuntu-latest
         strategy:
             matrix:
