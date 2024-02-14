@@ -20,7 +20,7 @@ from .test_helpers import TestHelpers
 
 CURRENT_DIRECTORY = os.getcwd()
 
-with open("ExcelFramework/test/data.json", encoding="utf-8") as file:
+with open("excel_framework/test/data.json", encoding="utf-8") as file:
     data = json.load(file)
 
 

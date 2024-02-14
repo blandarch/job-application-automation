@@ -74,7 +74,6 @@ class TestHelpers:
             filename_to_open (string, optional): name of the file to be opened if parameter
                 is not empty. Defaults to None.
         """
-        # excel_framework = ExcelFramework(filename_to_open)
         excel_framework = ExcelFramework(filename_to_open)
         excel_framework.add_data(sheet_name, data)
         excel_framework.save_workbook(filename_to_save)
