@@ -163,3 +163,4 @@ cython_debug/
 .DS_Store
 ExcelFramework/.vscode/PythonImportHelper-v2-Completion.json
 settings.json
+PythonImportHelper-v2-Completion.json
