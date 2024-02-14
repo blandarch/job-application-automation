@@ -26,3 +26,6 @@
          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
      - name: Test with pytester-cov
        uses: programmingwithalex/pytester-cov@v1.2.4
+       with:
+        cov-threshold-single: 80
+        cov-threshold-total: 80
