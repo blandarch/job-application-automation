@@ -1,3 +1,5 @@
+"""Static Constants to be used for testing Excel Framework"""
+
 # Validate Excel Files Strings
 SHEET_NAMES_DIFFERENT = "Sheet names are different."
 DIMENSIONS_SHEET_NAME_DIFFERENT = "Dimensions of sheet '{sheet_name}' are different."
