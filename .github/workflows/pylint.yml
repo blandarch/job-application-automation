@@ -1,6 +1,6 @@
 name: Pylint
 
-on: [pull_request]
+on: [pull_request, push]
 
 jobs:
   build:
@@ -21,10 +21,9 @@ jobs:
         pip install openpyxl
     - name: Analysing the code with pylint
       run: |
-        pylint $(git ls-files '*.py')
+        pylint --rcfile=./pylint/config/.pylintrc $(git ls-files '*.py')
     - name: Analysing Python test files Naming Convention
       run: |
-        pylint --method-rgx='^(test_)(?P<snake>[a-z_]+)' --ignore-patterns='test_helpers.py' $(git ls-files './*/test/test_[a-z_]*.py')
-            
+        pylint --rcfile=./pylint/testconfig/.pylintrc $(git ls-files './*/test/*.py')
 
 
