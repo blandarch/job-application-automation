@@ -24,7 +24,7 @@ jobs:
         pylint $(git ls-files '*.py')
     - name: Analysing the code tests with pylint
       run: |
-        pylint --method-rgx='^(test_)(?P<snake>[a-z_]+)' $(git ls-files './*/test/test_[a-z_]*.py')
+        pylint --method-rgx='^(test_)(?P<snake>[a-z_]+)' $(git ls-files './*/test/test_(?!(helpers))[a-z_]*.py')
             
 
 
