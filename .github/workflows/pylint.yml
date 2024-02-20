@@ -1,6 +1,6 @@
 name: Pylint
 
-on: [pull_request]
+on: [pull_request, push]
 
 jobs:
   build:
@@ -22,6 +22,9 @@ jobs:
     - name: Analysing the code with pylint
       run: |
         pylint $(git ls-files '*.py')
+    - name: Analysing the code tests with pylint
+      run: |
+        pylint --method-rgx='^(test_)(?P<snake>[a-z_]+)' $(git ls-files './*/test/test_[a-z_]*.py')
             
 
 
