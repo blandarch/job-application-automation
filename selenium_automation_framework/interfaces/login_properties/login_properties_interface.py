@@ -33,3 +33,18 @@ class LoginPropertiesInterface(ABC):
         Args:
             password (str): password to be entered upon logging in
         """
+
+    @property
+    @abstractmethod
+    def login_successful_indicator(self):
+        """_summary_: get method property for login_successful_indicator"""
+
+    @login_successful_indicator.setter
+    @abstractmethod
+    def login_successful_indicator(self, value: str):
+        """_summary_: setter method property for login_successful_indicator
+
+        Args:
+            value (str): indicator in the login page that the user was able to
+                get into the website
+        """

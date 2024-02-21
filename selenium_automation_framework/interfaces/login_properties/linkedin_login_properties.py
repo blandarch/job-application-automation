@@ -12,6 +12,7 @@ class LinkedInLoginProperties(LoginPropertiesInterface):
     def __init__(self):
         self.username: str = None
         self.password: str = None
+        self.login_successful_indicator: str = "Feed"
 
     @property
     def username(self):
@@ -28,3 +29,11 @@ class LinkedInLoginProperties(LoginPropertiesInterface):
     @password.setter
     def password(self, password: str):
         self.password = password
+
+    @property
+    def login_successful_indicator(self):
+        return self.login_successful_indicator
+
+    @login_successful_indicator.setter
+    def login_successful_indicator(self, value: str):
+        self.login_successful_indicator = value
