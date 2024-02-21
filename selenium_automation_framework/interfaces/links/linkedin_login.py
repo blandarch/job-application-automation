@@ -7,7 +7,7 @@ class LinkedInLogin(LinkInterface):
     """_summary_: Inherits link_interface to provide link to LinkedIn Login."""
 
     def __init__(self):
-        self.web_link = "https://www.linkedin.com/login"
+        self.web_link: str = "https://www.linkedin.com/login"
 
     @property
     def web_link(self):
