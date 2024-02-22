@@ -1,7 +1,7 @@
 """Imports WebElement and use_determiner"""
 
 from selenium.webdriver.remote.webelement import WebElement
-from selenium_automation_framework.interfaces.switcher import (
+from ..interfaces.switcher import (
     use_determiner,
 )
 
@@ -14,7 +14,7 @@ class LinkedInActions:
 
     def go_to_login_page(self):
         """_summary_: method to go to the login page"""
-        self.properties.driver.get(self.properties.web_link)
+        self.properties.driver.get(self.properties.login_url())
 
     def login(self):
         """_summary_: method to use to login to LinkedIn."""

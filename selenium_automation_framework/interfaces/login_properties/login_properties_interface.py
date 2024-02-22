@@ -1,47 +1,50 @@
 """_summary_: Login Properties interface class"""
 
-from abc import ABC, abstractmethod
 from cryptography.fernet import Fernet
 
 
-class LoginPropertiesInterface(ABC):
+class LoginPropertiesInterface:
     """_summary_: Interface class for Login Properties"""
 
-    @property
-    @abstractmethod
-    def _username(self):
-        """_summary_: get method property for username"""
+    def __init__(self, username: str, password: str, login_successful_indicator: str):
+        self._username: str = username
+        self._password: str = password
+        self._login_successful_indicator: str = login_successful_indicator
 
-    @_username.setter
-    @abstractmethod
-    def _username(self, username: str):
+    @property
+    def username(self):
+        """_summary_: get method property for username"""
+        return self._username
+
+    @username.setter
+    def username(self, username: str):
         """_summary_: setter method property for username
 
         Args:
             username (str): username to be entered upon logging in
         """
+        self._username = username
 
     @property
-    @abstractmethod
-    def _password(self):
+    def password(self):
         """_summary_: get method property for password"""
+        return self._password
 
-    @_password.setter
-    @abstractmethod
-    def _password(self, password: str):
+    @password.setter
+    def password(self, password: str):
         """_summary_: setter method property for password
 
         Args:
             password (str): password to be entered upon logging in
         """
+        self._password = password
 
     @property
-    @abstractmethod
     def login_successful_indicator(self):
         """_summary_: get method property for login_successful_indicator"""
+        return self._login_successful_indicator
 
     @login_successful_indicator.setter
-    @abstractmethod
     def login_successful_indicator(self, value: str):
         """_summary_: setter method property for login_successful_indicator
 
@@ -49,6 +52,7 @@ class LoginPropertiesInterface(ABC):
             value (str): indicator in the login page that the user was able to
                 get into the website
         """
+        self._login_successful_indicator = value
 
     def get_login_credentials(self):
         """_summary_: gets username and password from the website the user will be
@@ -57,7 +61,7 @@ class LoginPropertiesInterface(ABC):
         Returns:
             tuple(str, str): tuple of username and password
         """
-        return self._username, self._password
+        return self.username, self.password
 
     def decrypt_credentials_value(self, key: str, encrypted_value: str):
         """_summary_: returns a decrypted value of an encrypted value, provided with a key.
@@ -71,8 +75,8 @@ class LoginPropertiesInterface(ABC):
         """
 
         # intialise fernet cypher with key
-        cipher_suite = Fernet(key)
+        cipher_suite = Fernet(key.encode())
         # decrypt the value back to it's original value
-        decrypted_value = cipher_suite.decrypt(encrypted_value)
+        decrypted_value = cipher_suite.decrypt(encrypted_value.encode())
 
         return decrypted_value.decode()

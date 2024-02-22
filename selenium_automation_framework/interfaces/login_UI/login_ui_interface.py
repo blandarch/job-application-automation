@@ -1,94 +1,119 @@
 """Login UI Interface class"""
 
-from abc import ABC, abstractmethod
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.remote.webelement import WebElement
 
 
-class LoginUIInterface(ABC):
+class LoginUIInterface:
     """_summary_: Interface class for Login UI Interface"""
 
-    @property
-    @abstractmethod
-    def _username_xpath(self):
-        """_summary_: get method property for username xpath"""
+    def __init__(
+        self,
+        driver: webdriver.Chrome,
+        username_xpath: str,
+        password_xpath: str,
+        login_buton_xpath: str,
+    ):
+        self.driver = driver
+        self._username_xpath: str = username_xpath
+        self._password_xpath: str = password_xpath
+        self._login_button_xpath: str = login_buton_xpath
+        # Element Variables
+        self._username_element: WebElement = None
+        self._password_element: WebElement = None
+        self._login_button_element: WebElement = None
 
-    @_username_xpath.setter
-    @abstractmethod
-    def _username_xpath(self, xpath: str):
+    @property
+    def username_xpath(self):
+        """_summary_: get method property for username xpath"""
+        return self._username_xpath
+
+    @username_xpath.setter
+    def username_xpath(self, xpath: str):
         """_summary_: setter method property for username xpath
 
         Args:
             xpath (str): xpath of determiner to be used in getting username element
         """
+        self._username_xpath = xpath
 
     @property
-    @abstractmethod
-    def _password_xpath(self):
+    def password_xpath(self):
         """_summary_: get method property for password xpath"""
+        return self._password_xpath
 
-    @_password_xpath.setter
-    @abstractmethod
-    def _password_xpath(self, xpath: str):
+    @password_xpath.setter
+    def password_xpath(self, xpath: str):
         """_summary_: setter method property for password xpath
 
         Args:
             xpath (str): xpath of determiner to be used in getting password element
         """
+        self._password_xpath = xpath
 
     @property
-    @abstractmethod
-    def _login_button_xpath(self):
+    def login_button_xpath(self):
         """_summary_: get method property for login button xpath"""
+        return self._login_button_xpath
 
-    @_login_button_xpath.setter
-    @abstractmethod
-    def _login_button_xpath(self):
+    @login_button_xpath.setter
+    def login_button_xpath(self, xpath: str):
         """_summary_: setter method property for login button xpath
 
         Args:
             xpath (str): xpath of determiner to be used in getting login button
         """
+        self._login_button_xpath = xpath
 
     ######################## WEBDRIVER ELEMENT PROPERTIES #############################
     @property
-    @abstractmethod
     def username_element(self):
         """_summary_: get method property for username element"""
+        if self._username_element is None:
+            return self.driver.find_element(By.XPATH, self._username_xpath)
+        return self._username_element
 
     @username_element.setter
-    @abstractmethod
-    def username_element(self, element):
+    def username_element(self, element: WebElement):
         """_summary_: setter method property for username element
 
         Args:
             element (_type_): element where element of username is stored
                 for caching.
         """
+        self._username_element = element
 
     @property
-    @abstractmethod
     def password_element(self):
         """_summary_: get method property for password element"""
+        if self._password_element is None:
+            return self.driver.find_element(By.XPATH, self._password_xpath)
+        return self._password_element
 
     @password_element.setter
-    @abstractmethod
-    def password_element(self, element):
+    def password_element(self, element: WebElement):
         """_summary_: setter method property for password element
 
         Args:
             element (_type_): element where element of password is stored
                 for caching.
         """
+        self._password_element = element
 
     @property
-    @abstractmethod
     def login_button_element(self):
         """_summary_: get method property for login button element"""
+        if self._login_button_element is None:
+            return self.driver.find_element(By.XPATH, self._login_button_xpath)
+        return self._login_button_element
 
     @login_button_element.setter
-    def login_button_element(self):
+    def login_button_element(self, element: WebElement):
         """_summary_: setter method property for login button element
 
         Args:
             element (_type_): element where element of login button is stored
                 for caching.
         """
+        self._login_button_element = element

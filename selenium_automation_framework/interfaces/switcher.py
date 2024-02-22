@@ -3,11 +3,11 @@
 from selenium.webdriver.remote.webelement import WebElement
 from selenium import webdriver
 
-from selenium_automation_framework.interfaces.links.linkedin_login import LinkedInLogin
-from selenium_automation_framework.interfaces.login_properties.linkedin_login_properties import (
+from .links.linkedin_login import LinkedInLogin
+from .login_properties.linkedin_login_properties import (
     LinkedInLoginProperties,
 )
-from selenium_automation_framework.interfaces.login_UI.linkedin_login_ui import (
+from .login_UI.linkedin_login_ui import (
     LinkedInLoginUI,
 )
 
@@ -40,6 +40,6 @@ class LinkedInPropertiesSwitcher(
     LinkedInLoginProperties, LinkedInLoginUI"""
 
     def __init__(self, driver: WebElement):
-        super(LinkedInLogin, self).__init__()
-        super(LinkedInLoginProperties, self).__init__(driver)
-        super(LinkedInLoginUI, self).__init__()
+        LinkedInLogin.__init__(self)
+        LinkedInLoginProperties.__init__(self)
+        LinkedInLoginUI.__init__(self, driver)

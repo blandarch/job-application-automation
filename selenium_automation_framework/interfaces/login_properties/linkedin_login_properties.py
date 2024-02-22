@@ -20,34 +20,8 @@ class LinkedInLoginProperties(LoginPropertiesInterface):
             self.data = json.load(file)
 
         # passes and decrypts the username password with a key provided in json
-        self._username: str = self.decrypt_credentials_value(
-            self.data[KEY], self.data[USERNAME]
+        super().__init__(
+            self.decrypt_credentials_value(self.data[KEY], self.data[USERNAME]),
+            self.decrypt_credentials_value(self.data[KEY], self.data[PASSWORD]),
+            "Feed",
         )
-        self._password: str = self.decrypt_credentials_value(
-            self.data[KEY], self.data[PASSWORD]
-        )
-        self.login_successful_indicator: str = "Feed"
-
-    @property
-    def _username(self):
-        return self._username
-
-    @_username.setter
-    def _username(self, username: str):
-        self._username = username
-
-    @property
-    def _password(self):
-        return self._password
-
-    @_password.setter
-    def _password(self, password: str):
-        self._password = password
-
-    @property
-    def login_successful_indicator(self):
-        return self.login_successful_indicator
-
-    @login_successful_indicator.setter
-    def login_successful_indicator(self, value: str):
-        self.login_successful_indicator = value
