@@ -8,12 +8,12 @@ class LoginPropertiesInterface(ABC):
 
     @property
     @abstractmethod
-    def username(self):
+    def _username(self):
         """_summary_: get method property for username"""
 
-    @username.setter
+    @_username.setter
     @abstractmethod
-    def username(self, username: str):
+    def _username(self, username: str):
         """_summary_: setter method property for username
 
         Args:
@@ -22,12 +22,12 @@ class LoginPropertiesInterface(ABC):
 
     @property
     @abstractmethod
-    def password(self):
+    def _password(self):
         """_summary_: get method property for password"""
 
-    @password.setter
+    @_password.setter
     @abstractmethod
-    def password(self, password: str):
+    def _password(self, password: str):
         """_summary_: setter method property for password
 
         Args:
@@ -48,3 +48,12 @@ class LoginPropertiesInterface(ABC):
             value (str): indicator in the login page that the user was able to
                 get into the website
         """
+
+    def get_login_credentials(self):
+        """_summary_: gets username and password from the website the user will be
+            accessing with
+
+        Returns:
+            tuple(str, str): tuple of username and password
+        """
+        return self._username, self._password

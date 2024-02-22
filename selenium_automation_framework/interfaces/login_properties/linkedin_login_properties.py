@@ -10,25 +10,25 @@ class LinkedInLoginProperties(LoginPropertiesInterface):
     and password to LinkedIn Login"""
 
     def __init__(self):
-        self.username: str = None
-        self.password: str = None
+        self._username: str = None  # retrieve from the JSON file
+        self._password: str = None  # retrieve from the JSON file
         self.login_successful_indicator: str = "Feed"
 
     @property
-    def username(self):
-        return self.username
+    def _username(self):
+        return self._username
 
-    @username.setter
-    def username(self, username: str):
-        self.username = username
+    @_username.setter
+    def _username(self, username: str):
+        self._username = username
 
     @property
-    def password(self):
-        return self.password
+    def _password(self):
+        return self._password
 
-    @password.setter
-    def password(self, password: str):
-        self.password = password
+    @_password.setter
+    def _password(self, password: str):
+        self._password = password
 
     @property
     def login_successful_indicator(self):
