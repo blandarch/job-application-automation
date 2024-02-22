@@ -11,10 +11,11 @@ def test_linkedin_login():
     # sets up driver and linkedIn actions instance
     driver = chromedriver_setup()
     linkedin_actions = LinkedInActions(driver)
+    username, password = linkedin_actions.properties.get_login_credentials()
 
     # logs in
     linkedin_actions.go_to_login_page()
-    linkedin_actions.login()
+    linkedin_actions.login(username, password)
 
     # asserts that user is able to login
     assert (
