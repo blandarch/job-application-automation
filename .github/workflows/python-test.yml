@@ -53,7 +53,7 @@ jobs:
       uses: programmingwithalex/pytester-cover@main
       with:
         pytest-root-dir: '.'
-        pytest-tests-dir: 'test/'
+        pytest-tests-dir: 'test/tests.py'
         cov-omit-list: 'test/*, temp/main3.py, temp/main4.py'
         cov-threshold-single: ${{ env.COVERAGE_SINGLE }}
         cov-threshold-total: ${{ env.COVERAGE_TOTAL }}
