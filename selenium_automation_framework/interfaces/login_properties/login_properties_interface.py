@@ -6,10 +6,10 @@ from cryptography.fernet import Fernet
 class LoginPropertiesInterface:
     """_summary_: Interface class for Login Properties"""
 
-    def __init__(self, username: str, password: str, login_successful_indicator: str):
+    def __init__(self, username: str, password: str, login_successful_indicator: list):
         self._username: str = username
         self._password: str = password
-        self._login_successful_indicator: str = login_successful_indicator
+        self._login_successful_indicator: list = login_successful_indicator
 
     @property
     def username(self):
@@ -45,7 +45,7 @@ class LoginPropertiesInterface:
         return self._login_successful_indicator
 
     @login_successful_indicator.setter
-    def login_successful_indicator(self, value: str):
+    def login_successful_indicator(self, value: list):
         """_summary_: setter method property for login_successful_indicator
 
         Args:
