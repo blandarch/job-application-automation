@@ -16,13 +16,11 @@ class LinkedInActions:
         """_summary_: method to go to the login page"""
         self.properties.driver.get(self.properties.login_url())
 
-    def login(self):
+    def login(self, username: str, password: str):
         """_summary_: method to use to login to LinkedIn."""
 
-        credentials = self.properties.get_login_credentials()
-
         # sends username and password to the interface
-        self.properties.username_element.send_keys(credentials[0])
-        self.properties.password_element.send_keys(credentials[1])
+        self.properties.username_element.send_keys(username)
+        self.properties.password_element.send_keys(password)
         # clicks login
         self.properties.login_button_element.click()
