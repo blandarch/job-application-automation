@@ -1,6 +1,10 @@
 """Python file to return different web drivers"""
 
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+import chromedriver_autoinstaller
+from pyvirtualdisplay import Display
 
 
 def chromedriver_setup():
@@ -9,4 +13,37 @@ def chromedriver_setup():
     Returns:
         webdriver.Chrome: A chrome driver instance
     """
-    return webdriver.Chrome()
+    # start_display()
+    chromedriver_autoinstaller.install()
+    chrome_options = add_chrome_options()
+    return webdriver.Chrome(options=chrome_options)
+    # return webdriver.Chrome()
+
+
+def start_display():
+    display = Display(visible=0, size=(800, 800))
+    display.start()
+    return display
+
+
+def get_webdriver_options():
+    return [
+        # Define window size here
+        "--window-size=1200,1200",
+        "--ignore-certificate-errors",
+        # "--headless",
+        # "--disable-gpu",
+        # "--window-size=1920,1200",
+        # "--ignore-certificate-errors",
+        # "--disable-extensions",
+        # "--no-sandbox",
+        # "--disable-dev-shm-usage",
+        #'--remote-debugging-port=9222'
+    ]
+
+
+def add_chrome_options():
+    chrome_options = webdriver.ChromeOptions()
+    for option in get_webdriver_options():
+        chrome_options.add_argument(option)
+    return chrome_options
