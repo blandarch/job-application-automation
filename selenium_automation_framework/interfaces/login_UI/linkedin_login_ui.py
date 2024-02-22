@@ -14,9 +14,9 @@ class LinkedInLoginUI(LoginUIInterface):
 
     def __init__(self, driver: webdriver.Chrome):
         self.driver: webdriver.Chrome = driver
-        self.username_xpath: str = "Username"  # temporary value
-        self.password_xpath: str = "Password"  # temporary value
-        self.login_button_xpath: str = "Login"  # temporary value
+        self._username_xpath: str = "Username"  # temporary value
+        self._password_xpath: str = "Password"  # temporary value
+        self._login_button_xpath: str = "Login"  # temporary value
         # element variables
         self.username_element: WebElement = None
         self.password_element: WebElement = None
@@ -25,35 +25,35 @@ class LinkedInLoginUI(LoginUIInterface):
     ################# XPATHS PROPERTIES #####################
 
     @property
-    def username_xpath(self):
-        return self.username_xpath
+    def _username_xpath(self):
+        return self._username_xpath
 
-    @username_xpath.setter
-    def username_xpath(self, xpath: str):
-        self.username_xpath = xpath
-
-    @property
-    def password_xpath(self):
-        return self.password_xpath
-
-    @password_xpath.setter
-    def password_xpath(self, xpath: str):
-        self.password_xpath = xpath
+    @_username_xpath.setter
+    def _username_xpath(self, xpath: str):
+        self._username_xpath = xpath
 
     @property
-    def login_button_xpath(self):
-        return self.login_button_xpath
+    def _password_xpath(self):
+        return self._password_xpath
 
-    @login_button_xpath.setter
-    def login_button_xpath(self, xpath: str):
-        self.login_button_xpath = xpath
+    @_password_xpath.setter
+    def _password_xpath(self, xpath: str):
+        self._password_xpath = xpath
+
+    @property
+    def _login_button_xpath(self):
+        return self._login_button_xpath
+
+    @_login_button_xpath.setter
+    def _login_button_xpath(self, xpath: str):
+        self._login_button_xpath = xpath
 
     ################# ELEMENT PROPERTIES #####################
 
     @property
     def username_element(self):
         if self.username_element is None:
-            return self.driver.find_element(By.XPATH, self.username_xpath)
+            return self.driver.find_element(By.XPATH, self._username_xpath)
         return self.username_element
 
     @username_element.setter
@@ -63,7 +63,7 @@ class LinkedInLoginUI(LoginUIInterface):
     @property
     def password_element(self):
         if self.password_element is None:
-            return self.driver.find_element(By.XPATH, self.password_xpath)
+            return self.driver.find_element(By.XPATH, self._password_xpath)
         return self.password_element
 
     @password_element.setter
@@ -73,7 +73,7 @@ class LinkedInLoginUI(LoginUIInterface):
     @property
     def login_button_element(self):
         if self.login_button_element is None:
-            return self.driver.find_element(By.XPATH, self.login_button_xpath)
+            return self.driver.find_element(By.XPATH, self._login_button_xpath)
         return self.login_button_element
 
     @login_button_element.setter

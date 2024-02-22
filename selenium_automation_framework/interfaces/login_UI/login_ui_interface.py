@@ -8,12 +8,12 @@ class LoginUIInterface(ABC):
 
     @property
     @abstractmethod
-    def username_xpath(self):
+    def _username_xpath(self):
         """_summary_: get method property for username xpath"""
 
-    @username_xpath.setter
+    @_username_xpath.setter
     @abstractmethod
-    def username_xpath(self, xpath: str):
+    def _username_xpath(self, xpath: str):
         """_summary_: setter method property for username xpath
 
         Args:
@@ -22,12 +22,12 @@ class LoginUIInterface(ABC):
 
     @property
     @abstractmethod
-    def password_xpath(self):
+    def _password_xpath(self):
         """_summary_: get method property for password xpath"""
 
-    @password_xpath.setter
+    @_password_xpath.setter
     @abstractmethod
-    def password_xpath(self, xpath: str):
+    def _password_xpath(self, xpath: str):
         """_summary_: setter method property for password xpath
 
         Args:
@@ -36,12 +36,12 @@ class LoginUIInterface(ABC):
 
     @property
     @abstractmethod
-    def login_button_xpath(self):
+    def _login_button_xpath(self):
         """_summary_: get method property for login button xpath"""
 
-    @login_button_xpath.setter
+    @_login_button_xpath.setter
     @abstractmethod
-    def login_button_xpath(self):
+    def _login_button_xpath(self):
         """_summary_: setter method property for login button xpath
 
         Args:
