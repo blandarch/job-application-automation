@@ -24,9 +24,9 @@
 #   * peter-evans/commit-comment@v1: adds message to commit
 # **************************************************************************************************************** #
 
-name: pytester-cover workflow
+name: Pytest
 
-on: [push, pull_request]
+on: [pull_request]
 
 jobs:
   build:
