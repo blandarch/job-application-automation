@@ -1,8 +1,14 @@
 """Imports LinkedIn Actions and chromedriver"""
 
-from ..webdriver_setup.driver_setup import (
-    chromedriver_setup,
-)
+# from ..webdriver_setup.driver_setup import (
+#     chromedriver_setup,
+# )
+
+# from selenium_automation_framework.webdriver_setup.driver_setup import (
+#     chromedriver_setup,
+# )
+
+from ..webdriver_setup.driver_setup import chromedriver_setup
 from ..package.linkedin_actions import LinkedInActions
 
 
