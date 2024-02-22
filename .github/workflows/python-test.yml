@@ -55,7 +55,7 @@ jobs:
     - name: Install xvfb
       run: sudo apt-get install xvfb
     - name: Initial Pytest Run to Catch Fail
-      run: pytest --cov="/home/runner/work/job_application_automation/job_application_automation" ./test/tests.py
+      run: pytest ./test/tests.py
     - name: pytester-cover
       id: pytester-cover
       uses: programmingwithalex/pytester-cover@main
