@@ -1,6 +1,5 @@
 name: Selenium Run Test
-on:
-  workflow_dispatch:
+on: [pull_request]
 jobs:
   scrape:
     runs-on: ubuntu-latest
