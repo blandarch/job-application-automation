@@ -50,7 +50,7 @@ jobs:
 
     - name: pytester-cover
       id: pytester-cover
-      uses: programmingwithalex/pytester-cover@v1.2.4
+      uses: programmingwithalex/pytester-cover@main
       with:
         pytest-root-dir: '.'
         cov-omit-list: 'test/*, temp/main3.py, temp/main4.py'
