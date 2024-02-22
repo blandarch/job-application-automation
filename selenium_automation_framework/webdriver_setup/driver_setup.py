@@ -6,6 +6,8 @@ from selenium.webdriver.chrome.service import Service
 import chromedriver_autoinstaller
 from pyvirtualdisplay import Display
 
+# from webdriver_manager.chrome import ChromeDriverManager
+
 
 def chromedriver_setup():
     """_summary_: returns an instance of Chrome driver.
@@ -14,7 +16,7 @@ def chromedriver_setup():
         webdriver.Chrome: A chrome driver instance
     """
     # start_display()
-    chromedriver_autoinstaller.install()
+    # chromedriver_autoinstaller.install()
     chrome_options = add_chrome_options()
     return webdriver.Chrome(options=chrome_options)
     # return webdriver.Chrome()
@@ -31,7 +33,7 @@ def get_webdriver_options():
         # Define window size here
         "--window-size=1200,1200",
         "--ignore-certificate-errors",
-        # "--headless",
+        "--headless",
         # "--disable-gpu",
         # "--window-size=1920,1200",
         # "--ignore-certificate-errors",
@@ -43,7 +45,11 @@ def get_webdriver_options():
 
 
 def add_chrome_options():
-    chrome_options = webdriver.ChromeOptions()
+    chrome_options = Options()
     for option in get_webdriver_options():
         chrome_options.add_argument(option)
     return chrome_options
+
+
+# def get_chrome_service():
+#     return Service(ChromeDriverManager(chrome_type=))
