@@ -1,6 +1,7 @@
 """_summary_: Login Properties interface class"""
 
 from abc import ABC, abstractmethod
+from cryptography.fernet import Fernet
 
 
 class LoginPropertiesInterface(ABC):
@@ -57,3 +58,21 @@ class LoginPropertiesInterface(ABC):
             tuple(str, str): tuple of username and password
         """
         return self._username, self._password
+
+    def decrypt_credentials_value(self, key: str, encrypted_value: str):
+        """_summary_: returns a decrypted value of an encrypted value, provided with a key.
+
+        Args:
+            key (str): a secret key that is used to provide access to decrypt encrypted value.
+            encrypted_value (str): a value used for decrypting to its original text.
+
+        Returns:
+            str: a decrypted value of the original encrypted value.
+        """
+
+        # intialise fernet cypher with key
+        cipher_suite = Fernet(key)
+        # decrypt the value back to it's original value
+        decrypted_value = cipher_suite.decrypt(encrypted_value)
+
+        return decrypted_value.decode()

@@ -1,5 +1,7 @@
 """Imports LoginPropertiesInterface class"""
 
+import json
+
 from selenium_automation_framework.interfaces.login_properties.login_properties_interface import (
     LoginPropertiesInterface,
 )
@@ -10,8 +12,16 @@ class LinkedInLoginProperties(LoginPropertiesInterface):
     and password to LinkedIn Login"""
 
     def __init__(self):
-        self._username: str = None  # retrieve from the JSON file
-        self._password: str = None  # retrieve from the JSON file
+        with open("./../../credentials/linkedin.json", encoding="utf-8") as file:
+            self.data = json.load(file)
+
+        # passes and decrypts the username password with a key provided in json
+        self._username: str = self.decrypt_credentials_value(
+            self.data["key"], self.data["username"]
+        )
+        self._password: str = self.decrypt_credentials_value(
+            self.data["key"], self.data["password"]
+        )
         self.login_successful_indicator: str = "Feed"
 
     @property
