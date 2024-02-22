@@ -46,8 +46,8 @@ def test_linkedin_login_wrong_username():
 
     # asserts that user is not able to login
     assert (
-        linkedin_actions.properties.login_successful_indicator
-        not in linkedin_actions.properties.driver.title
+        linkedin_actions.properties.driver.title
+        not in linkedin_actions.properties.login_successful_indicator
     )
 
 
@@ -67,6 +67,6 @@ def test_linkedin_login_wrong_password():
 
     # asserts that user is not able to login
     assert (
-        linkedin_actions.properties.login_successful_indicator
-        not in linkedin_actions.properties.driver.title
+        linkedin_actions.properties.driver.title
+        not in linkedin_actions.properties.login_successful_indicator
     )
