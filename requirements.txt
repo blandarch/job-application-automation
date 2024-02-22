@@ -1,3 +1,5 @@
 cryptography
 selenium
 openpyxl
+coverage
+pytest
