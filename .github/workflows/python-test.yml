@@ -53,5 +53,5 @@ jobs:
     - name: Install xvfb
       run: sudo apt-get install xvfb
     - name: coverage-checker
-      uses: blandarch/pytest-cov-with-annotate@feature/enhancement
+      uses: amitds1997/pytest-annotate-pr@main
    
