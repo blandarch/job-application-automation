@@ -1,7 +1,10 @@
 cryptography
+chromedriver-autoinstaller
 selenium
+pyvirtualdisplay
 openpyxl
 coverage
+flake8
 pytest
 pytest-cov
 requests==2.28.1
