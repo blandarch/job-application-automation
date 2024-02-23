@@ -52,6 +52,36 @@ jobs:
         if [ -f requirements.txt ]; then pip3 install -r requirements.txt; fi
     - name: Install xvfb
       run: sudo apt-get install xvfb
-    - name: coverage-checker
-      uses: amitds1997/pytest-annotate-pr@main
+    - name: Run Pytest
+      run: |
+        coverage run -m pytest
+        coverage json
+    - name: Coverage Checker
+      run: |
+        coverage_file="coverage.json"
+
+        if [ ! -f "$coverage_file" ]; then
+            echo "Error: $coverage_file not found."
+            exit 1
+        fi
+
+        invalid_files=()
+        while IFS= read -r line; do
+            file=$(echo "$line" | awk -F: '{print $1}')
+            percent_covered=$(echo "$line" | awk -F: '{print $2}' | tr -d ',"%')
+            if (( $(echo "$percent_covered < 80" | bc -l) )); then
+                invalid_files+=("$file")
+            fi
+        done < <(jq -r '.files | to_entries[] | .key + ":" + (.value.summary.percent_covered_display // .value.summary.percent_covered) + "%" ' "$coverage_file")
+
+        if [ ${#invalid_files[@]} -gt 0 ]; then
+            echo "Error: The following files have coverage less than 80%:"
+            printf '%s\n' "${invalid_files[@]}"
+            exit 1
+        else
+            echo "All files have coverage greater than or equal to 80%."
+        fi
+
+        if [ -f coverage.json ]; then rm coverage.json; fi
+
    
