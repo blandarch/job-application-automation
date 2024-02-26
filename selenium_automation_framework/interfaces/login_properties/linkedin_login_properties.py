@@ -23,5 +23,4 @@ class LinkedInLoginProperties(LoginPropertiesInterface):
         super().__init__(
             self.decrypt_credentials_value(self.data[KEY], self.data[USERNAME]),
             self.decrypt_credentials_value(self.data[KEY], self.data[PASSWORD]),
-            ["Feed", "Security Verification | LinkedIn"],
         )
