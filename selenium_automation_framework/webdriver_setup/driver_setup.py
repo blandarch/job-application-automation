@@ -11,11 +11,8 @@ def chromedriver_setup():
     Returns:
         webdriver.Chrome: A chrome driver instance
     """
-    # start_display()
-    # chromedriver_autoinstaller.install()
     chrome_options = add_chrome_options()
     return webdriver.Chrome(options=chrome_options)
-    # return webdriver.Chrome()
 
 
 def start_display():
