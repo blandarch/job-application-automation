@@ -7,8 +7,7 @@ from ..package.linkedin_actions import LinkedInActions
 def test_linkedin_login():
     """_summary_: tests that framework is able to login using LinkedIn"""
     # sets up driver and linkedIn actions instance
-    driver = chromedriver_setup()
-    linkedin_actions = LinkedInActions(driver)
+    linkedin_actions = LinkedInActions(chromedriver_setup())
     username, password = linkedin_actions.properties.get_login_credentials()
 
     # logs in
