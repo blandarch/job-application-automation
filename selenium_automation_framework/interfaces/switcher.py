@@ -7,7 +7,7 @@ from .links.linkedin_login import LinkedInLogin
 from .login_properties.linkedin_login_properties import (
     LinkedInLoginProperties,
 )
-from .login_ui_duplicate.linkedin_login_ui import (
+from .login_ui.linkedin_login_ui import (
     LinkedInLoginUI,
 )
 
