@@ -1,31 +1,87 @@
-# This workflow will install Python dependencies, run tests and lint with a single version of Python
- # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+# **************************************************************************************************************** #
+# This workflow will install Python dependencies, and run `pytest --cov` on all files recursively from the `pytest-root-dir`
+# The workflow is also configured to exit with error if minimum individual file or total pytest coverage minimum not met
+# If the workflow exits with error, an informative issue is created for the repo alerting the user
+# If the workflow succeeds, a commit message is generated with the `pytest --cov` markdown table
+#
+# Variables to set:
+#   * pytester action:
+#     * pytest-root-dir: top-level directory to recursively check all .py files for `pytest --cov`
+#     * cov-omit-list: comma separated str of all files and/or dirs to ignore
+#   * env:
+#     * COVERAGE_SINGLE: minimum individual file coverage required
+#     * COVERAGE_TOTAL: minimum total coverage required
+#
+# Action outputs:
+#   * output-table: `pytest --cov` markdown output table
+#   * cov-threshold-single-fail: `false` if any single file coverage less than `cov-threshold-single`, else `true`
+#   * cov-threshold-total-fail: `false` if total coverage less than `cov-threshold-total`, else `true`
+#
+# Workflows used:
+#   * actions/checkout@v2: checkout files to perform additional actions on
+#   * programmingwithalex/pytester-cover@v1.2.3: runs `pytest --cov` and associated functions
+#   * nashmaniac/create-issue-action@v1.1: creates issue for repo
+#   * peter-evans/commit-comment@v1: adds message to commit
+# **************************************************************************************************************** #
 
- name: Python Test
+name: Pytest
 
- on: [pull_request]
+on: [pull_request]
 
- permissions:
-   contents: read
+jobs:
+  build:
 
- jobs:
-   build:
+    runs-on: ubuntu-latest
+    env:
+      COVERAGE_SINGLE: 80
+      COVERAGE_TOTAL: 80
 
-     runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+    - name: Installing package list
+      run: apt list --installed    
+    - name: Removing previous chrome instances on runner 
+      run: sudo apt purge google-chrome-stable
+    - name: Install dependencies
+      run: |
+        python3 -m pip install --upgrade pip
+        if [ -f requirements.txt ]; then pip3 install -r requirements.txt; fi
+    - name: Install xvfb
+      run: sudo apt-get install xvfb
+    - name: Run Pytest
+      run: |
+        coverage run -m pytest
+        coverage json
+    - name: Coverage Checker
+      run: |
+        coverage_file="coverage.json"
 
-     steps:
-     - uses: actions/checkout@v3
-     - name: Set up Python 3.10
-       uses: actions/setup-python@v3
-       with:
-         python-version: "3.10"
-     - name: Install dependencies
-       run: |
-         python -m pip install --upgrade pip
-         pip install openpyxl
-         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-     - name: Test with pytester-cov
-       uses: programmingwithalex/pytester-cov@v1.2.4
-       with:
-        cov-threshold-single: 80
-        cov-threshold-total: 80
+        if [ ! -f "$coverage_file" ]; then
+            echo "Error: $coverage_file not found."
+            exit 1
+        fi
+
+        invalid_files=()
+        while IFS= read -r line; do
+            file=$(echo "$line" | awk -F: '{print $1}')
+            percent_covered=$(echo "$line" | awk -F: '{print $2}' | tr -d ',"%')
+            if (( $(echo "$percent_covered < 80" | bc -l) )); then
+                invalid_files+=("$file")
+            fi
+        done < <(jq -r '.files | to_entries[] | .key + ":" + (.value.summary.percent_covered_display // .value.summary.percent_covered) + "%" ' "$coverage_file")
+
+        if [ ${#invalid_files[@]} -gt 0 ]; then
+            echo "Error: The following files have coverage less than 80%:"
+            printf '%s\n' "${invalid_files[@]}"
+            exit 1
+        else
+            echo "All files have coverage greater than or equal to 80%."
+        fi
+
+        if [ -f coverage.json ]; then rm coverage.json; fi
+
+   
