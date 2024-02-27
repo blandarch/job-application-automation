@@ -3,14 +3,19 @@
 from selenium.webdriver.remote.webelement import WebElement
 from selenium import webdriver
 
+# from links folder
 from .links.linkedin_login import LinkedInLogin
 from .links.job_search_website_login import JobSearchWebsiteLinks
+
+# from login properties folder
 from .login_properties.linkedin_login_properties import (
     LinkedInLoginProperties,
 )
 from .login_properties.job_search_website_login_properties import (
     JobSearchWebsiteLoginProperties,
 )
+
+# from login_ui folder
 from .login_ui.linkedin_login_ui import (
     LinkedInLoginUI,
 )
