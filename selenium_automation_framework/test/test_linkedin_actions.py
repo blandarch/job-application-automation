@@ -2,17 +2,14 @@
 
 from ..webdriver_setup.driver_setup import chromedriver_setup
 from ..package.linkedin_actions import LinkedInActions
+from .test_helpers import TestHelpers
 
 
 def test_linkedin_login():
     """_summary_: tests that framework is able to login using LinkedIn"""
     # sets up driver and linkedIn actions instance
     linkedin_actions = LinkedInActions(chromedriver_setup())
-    username, password = linkedin_actions.properties.get_login_credentials()
-
-    # logs in
-    linkedin_actions.go_to_login_page()
-    linkedin_actions.login(username, password)
+    linkedin_actions = TestHelpers.login_actions(linkedin_actions)
 
     # asserts that user is able to login
     assert (
@@ -25,23 +22,10 @@ def test_ui_get_set():
     """_summary_: tests that login_ui_interface is able to return different web elements"""
     # sets up driver and linkedIn actions instance
     linkedin_actions = LinkedInActions(chromedriver_setup())
-    linkedin_actions.go_to_login_page()
-
-    # retrieves original elements for username, password and login
-    original_username_element = linkedin_actions.properties.username_element
-    original_password_element = linkedin_actions.properties.password_element
-    original_login_element = linkedin_actions.properties.login_button_element
-
-    # passes different xpath for username, password, and login elements
-    linkedin_actions.properties.username_element = '//label[contains(text(), "Email")]'
-    linkedin_actions.properties.password_element = (
-        '//label[contains(text(), "Password")]'
+    # assert is inside the login_ui_get_set() method
+    TestHelpers.login_ui_get_set(
+        instance=linkedin_actions,
+        username_xpath='//label[contains(text(), "Email")]',
+        password_xpath='//label[contains(text(), "Password")]',
+        login_button_xpath='//*[contains(text(), "Forgot password?")]',
     )
-    linkedin_actions.properties.login_button_element = (
-        '//*[contains(text(), "Forgot password?")]'
-    )
-
-    # asserts that the original elements are different from the new elements inserted by xpath
-    assert original_username_element != linkedin_actions.properties.username_element
-    assert original_password_element != linkedin_actions.properties.password_element
-    assert original_login_element != linkedin_actions.properties.login_button_element
