@@ -55,6 +55,11 @@ def use_determiner(
         determiner (str): LinkedIn or Other Websites
         driver (webdriver.Chrome): driver you pass to collect elements
 
+    Returns:
+        LinkedInPropertiesSwitcher: an instance of LinkedIn properties and methods
+        JobSearchWebsitePropertiesSwitcher: an instance of mock job website
+            properties and methods
+
     Raises:
         ValueError: if determiner does not include within the dictionary
     """
