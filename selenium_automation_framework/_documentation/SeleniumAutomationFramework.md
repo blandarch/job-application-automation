@@ -6,7 +6,7 @@ The Selenium Automation Framework, a powerful and highly flexible tool, robustly
 
 ## How The Code Works
 
-![Selenium Automation Framework Logic](selenium_automation_framework_logic.png)
+![Selenium Automation Framework Logic](selenium-logic.png)
 
 1. Actions on how to interact with the website that you’re looking for can be found inside the python file that has `actions.py` suffix inside the package folder. It calls the `use_determiner()` method from `interfaces/switcher.py`. The package folder is the only package you need, if you want to utilise the automation framework to interact with other commands from other frameworks.
 2. The `use_determiner()` method from `interfaces/switcher.py` accepts a string parameter. This parameter determines which class, along with its properties and methods, will be invoked. A new instance of the specified class is then created.
@@ -16,7 +16,7 @@ The Selenium Automation Framework, a powerful and highly flexible tool, robustly
 
 ## Folder Structure
 
-![Selenium Automation Framework Folder Structure](selenium_framework_folder_structure.png)
+![Selenium Automation Framework Folder Structure](selenium-folder-structure.png)
 
 ### Main Components of the Automation Framework:
 
