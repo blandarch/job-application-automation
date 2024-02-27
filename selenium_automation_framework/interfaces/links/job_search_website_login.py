@@ -9,5 +9,7 @@ class JobSearchWebsiteLinks(LinkInterface):
     def __init__(self):
         super().__init__(url="https://demo.jobboardmount.com/")
 
-    def login_url(self, subdomain: str = "main/static/signIn"):
-        return super().login_url(subdomain)
+    def login_url(
+        self, subdomain: str = "https://parabank.parasoft.com/parabank/admin.htm"
+    ):
+        return subdomain
