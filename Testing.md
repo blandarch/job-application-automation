@@ -40,3 +40,23 @@ The same run is also being handled inside the `pylint.yml` file inside `.github/
           # customName => the customName of the config folder file you made.
           # path/to/python/file.py => the path to the python file you want to test. You can substitute with with a regex format to test list of python files that will satisfy the regex line.
         ```
+
+# Pytest
+
+### Introduction
+
+Pytest offers thorough testing for various frameworks in automation. Its aim is to ensure that expected behaviours are tested before merging any branch into the main branches. The inclusion of pytest in these frameworks enhances test coverage across the entire automation, guaranteeing the expected behaviours are confirmed in the tests.
+
+### Running Pytest and its behaviour within the Framework
+
+- After developing the initial architecture of every framework, tests are created to ensure that the developed architecture should behave the way it is expected to be. The general rule is to have a test coverage per file and for the overall framework of at least 80%.
+- Each time a pull request is made, the Pytest Github workflow action is triggered and runs all tests found across the Framework. After all tests have passed, it runs `coverage json`. This generates a JSON file detailing the Python files that were executed and the test coverage achieved for each file. If a file fails to reach a test coverage of 80%, the workflow action will raise an error.
+
+### Test Coverage Best Practices
+
+- There should be a `test` folder for every framework where all test python files are located. See `excel_framework` folder as sample.
+- Test coverage for the entire framework should be 80% minimum. If you added files within the framework, it is required to add the method added to the testing file (or make a separate testing file, if it is a new file inside the framework) to increase the test coverage.
+- The testing file should have a prefix `test_` so that pytest can pick it up and recognise it is a python test file.
+- Inside of that test file should not be enclosed in a class. Methods should also have a prefix `test_`  so that pytest can also pick it up as a test method. (e.g. method name should be `test_return_numbers()` )
+- Always use `assert` for every method, as this will be the overall evaluation that the code works.
+- Use `test_helpers.py` to place all reusable methods being used by the test file itself, to prevent spaghetti code.
