@@ -11,7 +11,7 @@ class JobSearchWebsiteLoginUI(LoginUIInterface):
     def __init__(self, driver: webdriver.Chrome):
         super().__init__(
             driver=driver,
-            username_xpath="username",
-            password_xpath="password",
-            login_buton_xpath="login",
+            username_xpath='//input[@id="email"]',
+            password_xpath='//input[@id="password"]',
+            login_buton_xpath='//input[@type="button"][@name="submit.login"]',
         )
