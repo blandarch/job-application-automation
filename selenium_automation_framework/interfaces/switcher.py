@@ -22,28 +22,6 @@ from .login_ui.linkedin_login_ui import (
 from .login_ui.job_search_website_login_ui import JobSearchWebsiteLoginUI
 
 
-def use_determiner(determiner: str, driver: webdriver.Chrome):
-    """_summary_: method to use to switch witch properties you will use
-
-    Args:
-        determiner (str): LinkedIn or Other Websites
-        driver (webdriver.Chrome): driver you pass to collect elements
-
-    Raises:
-        ValueError: if determiner does not include within the dictionary
-    """
-    determiner_actions = {
-        "LinkedIn": LinkedInPropertiesSwitcher,
-        "Mock Website": JobSearchWebsitePropertiesSwitcher,
-        # Add more determiners and methods as needed
-    }
-    action = determiner_actions.get(determiner)
-
-    if action:
-        return action(driver)
-    raise ValueError(f"determiner {determiner} does not exist as an option")
-
-
 class LinkedInPropertiesSwitcher(
     LinkedInLogin, LinkedInLoginProperties, LinkedInLoginUI
 ):
@@ -66,3 +44,27 @@ class JobSearchWebsitePropertiesSwitcher(
         JobSearchWebsiteLinks.__init__(self)
         JobSearchWebsiteLoginProperties.__init__(self)
         JobSearchWebsiteLoginUI.__init__(self, driver)
+
+
+def use_determiner(
+    determiner: str, driver: webdriver.Chrome
+) -> LinkedInPropertiesSwitcher | JobSearchWebsitePropertiesSwitcher:
+    """_summary_: method to use to switch witch properties you will use
+
+    Args:
+        determiner (str): LinkedIn or Other Websites
+        driver (webdriver.Chrome): driver you pass to collect elements
+
+    Raises:
+        ValueError: if determiner does not include within the dictionary
+    """
+    determiner_actions = {
+        "LinkedIn": LinkedInPropertiesSwitcher,
+        "Mock Website": JobSearchWebsitePropertiesSwitcher,
+        # Add more determiners and methods as needed
+    }
+    action = determiner_actions.get(determiner)
+
+    if action:
+        return action(driver)
+    raise ValueError(f"determiner {determiner} does not exist as an option")
