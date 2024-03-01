@@ -52,6 +52,7 @@ Aside from the interface file and inherited python files from the interface file
 4. All folders inside interfaces file must also have `__init__.py` files for relative imports purposes in python.
 5. All new methods should be created within existing Python files and folders, following the definitions provided in the Folder Structure section of this documentation. If a method doesn't fit within any existing Python files or folders, a new folder should be created, adhering to best practices numbers 1-4. This approach ensures the code remains reusable, scalable, and easy to decouple.
 6. All additional python codes should adhere to best practices followed by default Pylint documentation.
+7. `paths_constants.py` and `static_constants.py` inside the `interfaces/login_properties` folder should adhere to the actual purpose of the files. Refer to “ login_properties folder” section of this page to know the purpose of these files.
 
 ## Testing
 
