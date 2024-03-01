@@ -16,10 +16,10 @@ from .login_properties.job_search_website_login_properties import (
 )
 
 # from login_ui folder
-from .login_ui.linkedin_login_ui import (
+from .ui_login.linkedin_login_ui import (
     LinkedInLoginUI,
 )
-from .login_ui.job_search_website_login_ui import JobSearchWebsiteLoginUI
+from .ui_login.job_search_website_login_ui import JobSearchWebsiteLoginUI
 
 
 class LinkedInPropertiesSwitcher(
