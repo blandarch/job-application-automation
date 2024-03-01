@@ -37,6 +37,13 @@ Inside every folders under the `interfaces` folder has an interface python file,
 3. **`login_ui` folder** - provides properties and methods that pertains to the login page of every website.
 4. **`switcher.py`** - a python file where `use_determiner()` is located and where other switcher python classes can be found as well.
 
+### `login_properties` Folder
+
+Aside from the interface file and inherited python files from the interface file, there are two notable files that are also important:
+
+1. **`login_properties_paths_constants.py`** - constants python file where you will assign properties path to the JSON credentials files for login and password. The default path to get the credentials is from the `credentials` folder.
+2. **`static_constants.py`** - constants python file where you assign the JSON properties of credentials from the `credentials` folder.
+
 ## Framework Best Practices
 
 1. You can add a folder that sets generic properties and methods for a component of a website. However, every time a new folder is made, there **must** be an interface file, where generic methods and properties for a specific component of the website are found. Then this must be inherited by the website class.
