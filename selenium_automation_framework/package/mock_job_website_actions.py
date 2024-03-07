@@ -15,6 +15,10 @@ class MockJobWebsiteActions:
     def __init__(self, driver: WebElement):
         self.properties = use_determiner("Mock Website", driver)
 
+    def go_to_main_website(self):
+        """_summary_: method to go to the main mock website page"""
+        self.properties.driver.get(self.properties.url)
+
     def go_to_login_page(self):
         """_summary_: method to go to the login page"""
         self.properties.driver.get(self.properties.login_url())
