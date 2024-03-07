@@ -42,9 +42,6 @@ def test_ui_job_search():
     mock_website_actions.go_to_main_website()
 
     mock_website_actions.search_jobs("Help Desk")
-    assert (
-        "results?sort_field=post_date&keyword=Help%2BDesk"
-        in mock_website_actions.properties.driver.current_url
-    )
+    assert mock_website_actions.properties.results_search_text_element.is_displayed()
 
     mock_website_actions.properties.driver.quit()

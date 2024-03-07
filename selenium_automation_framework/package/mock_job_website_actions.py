@@ -3,6 +3,8 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from ..interfaces.switcher import (
     use_determiner,
 )
@@ -44,6 +46,14 @@ class MockJobWebsiteActions:
         # inputs job search and presses enter
         self.properties.search_text_element.send_keys(search_text)
         self.properties.search_text_element.send_keys(Keys.ENTER)
+
+        WebDriverWait(self.properties.driver, 10).until(
+            EC.visibility_of(
+                self.properties.get_element_xpath(
+                    self.properties.result_job_title_xpath, self.properties.driver
+                )
+            )
+        )
 
     def store_job_results(self) -> list[JobSearchResult]:
         """_summary_: returns a list of JobSearchResult object class to extract
