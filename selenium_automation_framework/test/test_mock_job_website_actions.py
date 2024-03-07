@@ -29,3 +29,16 @@ def test_login_ui_get_set():
         password_xpath='//*[text()="Password"]',
         login_button_xpath='//*[text()="Forgot login info?"]',
     )
+
+
+def test_ui_job_search():
+    """_summary_: tests that ui_job_search is able to search inb mock website"""
+    # sets up driver and linkedIn actions instance
+    mock_website_actions = MockJobWebsiteActions(chromedriver_setup())
+    mock_website_actions.go_to_main_website()
+
+    mock_website_actions.search_jobs("Help Desk")
+    assert (
+        "results?sort_field=post_date&keyword=Help%2BDesk"
+        in mock_website_actions.properties.driver.current_url
+    )
