@@ -53,3 +53,22 @@ class TestHelpers:
         assert original_username_element != instance.properties.username_element
         assert original_password_element != instance.properties.password_element
         assert original_login_element != instance.properties.login_button_element
+
+    @staticmethod
+    def ui_job_search(
+        instance: LinkedInActions | MockJobWebsiteActions, search_text: str
+    ) -> LinkedInActions | MockJobWebsiteActions:
+        """_summary_: method to go
+
+        Args:
+            instance (LinkedInActions | MockJobWebsiteActions): _description_
+            search_text (str): _description_
+
+        Returns:
+            LinkedInActions | MockJobWebsiteActions: _description_
+        """
+        if isinstance(instance, MockJobWebsiteActions):
+            instance.go_to_main_website()
+        instance.search_jobs(search_text)
+
+        return instance

@@ -37,11 +37,9 @@ def test_login_ui_get_set():
 
 def test_ui_job_search():
     """_summary_: tests that ui_job_search is able to search inb mock website"""
-    # sets up driver and linkedIn actions instance
+    # sets up driver and mock website actions instance
     mock_website_actions = MockJobWebsiteActions(chromedriver_setup())
-    mock_website_actions.go_to_main_website()
-
-    mock_website_actions.search_jobs("Help Desk")
+    mock_website_actions = TestHelpers.ui_job_search(mock_website_actions, "Help Desk")
     assert mock_website_actions.properties.results_search_text_element.is_displayed()
 
     mock_website_actions.properties.driver.quit()
