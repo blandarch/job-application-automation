@@ -8,4 +8,6 @@ class UIMockWebsiteJobSearch(UIJobSearchInterface):
     """Inherited class for Mock Website Job Search UI"""
 
     def __init__(self, driver: webdriver.Chrome):
-        super().__init__(driver, search_text_xpath='//input[@id="criterion271_35"]')
+        super().__init__(
+            driver, search_text_xpath='//input[contains(@id, "criterion271")]'
+        )
