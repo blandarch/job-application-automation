@@ -15,14 +15,12 @@ class UIJobResultsInterface:
         result_job_title_xpath: str,
         result_job_description_xpath: str,
         result_job_company_xpath: str,
-        result_date_opened_xpath: str,
     ):
         self.driver: webdriver.Chrome = driver
         self._results_search_text_xpath: str = results_search_text_xpath
         self._result_job_title_xpath: str = result_job_title_xpath
         self._result_job_description_xpath: str = result_job_description_xpath
         self._result_job_company_xpath: str = result_job_company_xpath
-        self._result_date_opened_xpath: str = result_date_opened_xpath
 
         # Element variables
         self._results_search_text_element: WebElement = None
@@ -89,15 +87,15 @@ class UIJobResultsInterface:
     def result_job_company_xpath(self, xpath: str):
         self._result_job_company_xpath = xpath
 
-    @property
-    def result_date_opened_xpath(self) -> str:
-        """_summary_: xpath property for date opened xpath
+    # @property
+    # def result_date_opened_xpath(self) -> str:
+    #     """_summary_: xpath property for date opened xpath
 
-        Returns:
-            str: xpath for date opened
-        """
-        return self._result_date_opened_xpath
+    #     Returns:
+    #         str: xpath for date opened
+    #     """
+    #     return self._result_date_opened_xpath
 
-    @result_date_opened_xpath.setter
-    def result_date_opened_xpath(self, xpath: str):
-        self._result_date_opened_xpath = xpath
+    # @result_date_opened_xpath.setter
+    # def result_date_opened_xpath(self, xpath: str):
+    #     self._result_date_opened_xpath = xpath
