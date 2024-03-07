@@ -24,6 +24,9 @@ from .ui_login.job_search_website_login_ui import JobSearchWebsiteLoginUI
 # from ui_job_search folder
 from .ui_job_search.ui_mock_website_job_search import UIMockWebsiteJobSearch
 
+# from ui_job_results folder
+from .ui_job_results.ui_job_results_mock_website import UIJobResultsMockWebsite
+
 
 class LinkedInPropertiesSwitcher(
     LinkedInLogin, LinkedInLoginProperties, LinkedInLoginUI
@@ -42,6 +45,7 @@ class JobSearchWebsitePropertiesSwitcher(
     JobSearchWebsiteLoginProperties,
     JobSearchWebsiteLoginUI,
     UIMockWebsiteJobSearch,
+    UIJobResultsMockWebsite,
 ):
     """_summary_: Inherits all properties from JobSearchWebsiteLinks,
     JobSearchWebsiteLoginProperties, JobSearchWebsiteLoginUI"""
@@ -51,6 +55,7 @@ class JobSearchWebsitePropertiesSwitcher(
         JobSearchWebsiteLoginProperties.__init__(self)
         JobSearchWebsiteLoginUI.__init__(self, driver)
         UIMockWebsiteJobSearch.__init__(self, driver)
+        UIJobResultsMockWebsite.__init__(self, driver)
 
 
 def use_determiner(
