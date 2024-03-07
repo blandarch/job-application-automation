@@ -1,6 +1,5 @@
 """Inherits WebElement, and Inheritances from parents properties"""
 
-from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
 from selenium import webdriver
 
