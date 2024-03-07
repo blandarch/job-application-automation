@@ -39,9 +39,3 @@ class MockJobWebsiteActions:
         # inputs job search and presses enter
         self.properties.search_text_element.send_keys(search_text)
         self.properties.search_text_element.send_keys(Keys.ENTER)
-
-    def store_job_results(self):
-        # update search text xpath
-        self.properties.search_text_element = '//input[@id="criterion271_35"]'
-        
-        
