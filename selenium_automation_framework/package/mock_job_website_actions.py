@@ -60,7 +60,7 @@ class MockJobWebsiteActions:
                 By.XPATH, self.properties.result_job_description_xpath
             )
             job_company_element = result.find_element(
-                By.XPATH, self.properties._result_job_company_xpath
+                By.XPATH, self.properties.result_job_company_xpath
             )
 
             job_search_results.append(
