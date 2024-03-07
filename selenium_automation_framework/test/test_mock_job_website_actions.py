@@ -17,6 +17,8 @@ def test_mock_website_login():
         != mock_website_actions.properties.login_url()
     )
 
+    mock_website_actions.properties.driver.quit()
+
 
 def test_login_ui_get_set():
     """_summary_: tests that login_ui_interface is able to return different web elements"""
@@ -30,6 +32,8 @@ def test_login_ui_get_set():
         login_button_xpath='//*[text()="Forgot login info?"]',
     )
 
+    mock_website_actions.properties.driver.quit()
+
 
 def test_ui_job_search():
     """_summary_: tests that ui_job_search is able to search inb mock website"""
@@ -42,3 +46,5 @@ def test_ui_job_search():
         "results?sort_field=post_date&keyword=Help%2BDesk"
         in mock_website_actions.properties.driver.current_url
     )
+
+    mock_website_actions.properties.driver.quit()
