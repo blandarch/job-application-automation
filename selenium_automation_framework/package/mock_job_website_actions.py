@@ -1,5 +1,6 @@
 """Imports WebElement and use_determiner"""
 
+from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.common.keys import Keys
 from ..interfaces.switcher import (
@@ -39,3 +40,36 @@ class MockJobWebsiteActions:
         # inputs job search and presses enter
         self.properties.search_text_element.send_keys(search_text)
         self.properties.search_text_element.send_keys(Keys.ENTER)
+
+    def store_job_results(self) -> list[JobSearchResult]:
+        """_summary_: returns a list of JobSearchResult object class to extract
+            job details of search results
+
+        Returns:
+            list[JobSearchResult]: a list of Job Result object class that is filled
+                up with job details per class
+        """
+        job_search_results = list[JobSearchResult]
+
+        # loops through the job results and extracts the job title, description and company
+        for result in self.properties.search_results_elements:
+            job_title_element = result.find_element(
+                By.XPATH, self.properties.result_job_title_xpath
+            )
+            job_description_element = result.find_element(
+                By.XPATH, self.properties.result_job_description_xpath
+            )
+            job_company_element = result.find_element(
+                By.XPATH, self.properties._result_job_company_xpath
+            )
+
+            job_search_results.append(
+                JobSearchResult(
+                    job_title=job_title_element.text,
+                    job_description=job_description_element.text,
+                    company=job_company_element.text,
+                    date_posted=None,
+                )
+            )
+
+        return job_search_results
