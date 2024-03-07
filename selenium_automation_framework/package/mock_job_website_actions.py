@@ -53,21 +53,17 @@ class MockJobWebsiteActions:
 
         # loops through the job results and extracts the job title, description and company
         for result in self.properties.search_results_elements:
-            job_title_element = result.find_element(
-                By.XPATH, self.properties.result_job_title_xpath
-            )
-            job_description_element = result.find_element(
-                By.XPATH, self.properties.result_job_description_xpath
-            )
-            job_company_element = result.find_element(
-                By.XPATH, self.properties.result_job_company_xpath
-            )
-
             job_search_results.append(
                 JobSearchResult(
-                    job_title=job_title_element.text,
-                    job_description=job_description_element.text,
-                    company=job_company_element.text,
+                    job_title=result.find_element(
+                        By.XPATH, self.properties.result_job_title_xpath
+                    ).text,
+                    job_description=result.find_element(
+                        By.XPATH, self.properties.result_job_description_xpath
+                    ).text,
+                    company=result.find_element(
+                        By.XPATH, self.properties.result_job_company_xpath
+                    ).text,
                     date_posted=None,
                 )
             )
