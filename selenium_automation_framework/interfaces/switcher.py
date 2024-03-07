@@ -81,21 +81,3 @@ def use_determiner(
     if action:
         return action(driver)
     raise ValueError(f"determiner {determiner} does not exist as an option")
-
-
-"""This method is only to be used if element xpath is very flexible, and inherited 
-    object is very flexible that this xpath method needs to be used instead"""
-
-
-def get_element_xpath(xpath: str, driver: webdriver.Chrome) -> WebElement:
-    """_summary_: method to use to get element xpath with inherited
-        classes that do not have element properties
-
-    Args:
-        xpath (str): xpath as basis to find web element
-        driver (webdriver.Chrome): driver that orchestrates the automation
-
-    Returns:
-        WebElement: Web Element retrieved
-    """
-    return driver.find_element(By.XPATH, xpath)
