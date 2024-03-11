@@ -70,6 +70,7 @@ class MockJobWebsiteActions:
                         By.XPATH, self.properties.result_job_company_xpath
                     ).text,
                     date_posted=None,
+                    url=None,
                 )
             )
 
