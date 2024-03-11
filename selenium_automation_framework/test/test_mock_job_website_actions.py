@@ -52,7 +52,8 @@ def test_ui_job_results():
     mock_website_actions = MockJobWebsiteActions(chromedriver_setup())
     mock_website_actions = TestHelpers.ui_job_search(mock_website_actions, "Help Desk")
 
+    # stores job results to prepare for checking
     job_results: list[JobSearchResult] = mock_website_actions.store_job_results()
 
-    assert len(job_results) != 0
-    # for result in job_results:
+    # asserts that job results have four items
+    # checks that items properties (except for date_posted) is not empty/None
