@@ -47,13 +47,7 @@ class MockJobWebsiteActions:
         self.properties.search_text_element.send_keys(search_text)
         self.properties.search_button_element.click()
 
-        WebDriverWait(self.properties.driver, 10).until(
-            EC.visibility_of(
-                self.properties.get_element_xpath(
-                    self.properties.result_job_title_xpath, self.properties.driver
-                )
-            )
-        )
+        self.properties.driver.implicitly_wait(5)
 
     def store_job_results(self) -> list[JobSearchResult]:
         """_summary_: returns a list of JobSearchResult object class to extract
