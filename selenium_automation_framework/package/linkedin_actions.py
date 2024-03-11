@@ -1,5 +1,6 @@
 """Imports WebElement and use_determiner"""
 
+from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.remote.webelement import WebElement
 from ..interfaces.switcher import (
     use_determiner,
@@ -24,3 +25,19 @@ class LinkedInActions:
         self.properties.password_element.send_keys(password)
         # clicks login
         self.properties.login_button_element.click()
+
+    def search_jobs(self, search_text: str):
+        """_summary_: method to use to search for jobs in linkedin.
+
+        Args:
+            search_text (str): the text you will input for the job search text
+        """
+        # clicks the Jobs Web Element after logging in
+        self.properties.jobs_button_element.click()
+
+        # inputs job search text and presses enter
+        self.properties.search_text_element.send_keys(search_text)
+        self.properties.search_button_element.send_keys(Keys.ENTER)
+
+        # implicitly waits for 5 seconds
+        self.properties.driver.implicitly_wait(5)
