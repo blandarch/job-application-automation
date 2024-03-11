@@ -57,7 +57,7 @@ class MockJobWebsiteActions:
             list[JobSearchResult]: a list of Job Result object class that is filled
                 up with job details per class
         """
-        job_search_results = list[JobSearchResult]
+        job_search_results: list[JobSearchResult] = []
 
         # loops through the job results and extracts the job title, description and company
         for result in self.properties.search_results_elements:
