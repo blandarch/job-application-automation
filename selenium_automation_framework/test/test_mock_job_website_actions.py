@@ -58,3 +58,10 @@ def test_ui_job_results():
     # asserts that job results have four items
     assert len(job_results) == 4
     # checks that items properties (except for date_posted) is not empty/None
+    for job_result in job_results:
+        assert len(job_result.job_title) != 0
+        assert len(job_result.job_description) != 0
+        assert len(job_result.company) != 0
+        assert job_result.date_posted is None
+
+    mock_website_actions.properties.driver.quit()
