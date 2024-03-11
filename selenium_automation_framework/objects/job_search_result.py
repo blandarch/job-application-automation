@@ -6,6 +6,10 @@ class JobSearchResult:
 
     def __init__(
         self,
+        job_title=None,
+        job_description=None,
+        company=None,
+        date_posted=None,
         url=None,
     ):
         self._job_title: str = job_title
