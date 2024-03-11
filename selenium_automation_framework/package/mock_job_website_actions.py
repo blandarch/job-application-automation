@@ -45,7 +45,7 @@ class MockJobWebsiteActions:
 
         # inputs job search and presses enter
         self.properties.search_text_element.send_keys(search_text)
-        self.properties.search_text_element.send_keys(Keys.ENTER)
+        self.properties.search_button_element.click()
 
         WebDriverWait(self.properties.driver, 10).until(
             EC.visibility_of(
