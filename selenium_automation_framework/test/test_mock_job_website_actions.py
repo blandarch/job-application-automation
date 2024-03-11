@@ -1,5 +1,6 @@
 """Imports Mock Job Website Actions and chromedriver"""
 
+from ..objects.job_search_result import JobSearchResult
 from ..webdriver_setup.driver_setup import chromedriver_setup
 from ..package.mock_job_website_actions import MockJobWebsiteActions
 from .test_helpers import TestHelpers
@@ -43,3 +44,15 @@ def test_ui_job_search():
     assert mock_website_actions.properties.results_search_text_element.is_displayed()
 
     mock_website_actions.properties.driver.quit()
+
+
+def test_ui_job_results():
+    """_summary_: tests that ui_job_results is able to extract job results from website"""
+    # sets up driver and mock website actions instance
+    mock_website_actions = MockJobWebsiteActions(chromedriver_setup())
+    mock_website_actions = TestHelpers.ui_job_search(mock_website_actions, "Help Desk")
+
+    job_results: list[JobSearchResult] = mock_website_actions.store_job_results()
+
+    assert len(job_results) != 0
+    # for result in job_results:
