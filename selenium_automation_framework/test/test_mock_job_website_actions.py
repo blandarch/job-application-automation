@@ -56,4 +56,5 @@ def test_ui_job_results():
     job_results: list[JobSearchResult] = mock_website_actions.store_job_results()
 
     # asserts that job results have four items
+    assert len(job_results) == 4
     # checks that items properties (except for date_posted) is not empty/None
