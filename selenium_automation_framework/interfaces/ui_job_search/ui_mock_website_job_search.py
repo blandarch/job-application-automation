@@ -13,7 +13,6 @@ class UIMockWebsiteJobSearch(UIJobSearchInterface):
         super().__init__(
             driver,
             search_text_xpath='//input[contains(@id, "criterion271")]',
-            search_button_xpath='//input[@type="button"][@value="Search Jobs"]',
         )
         self._search_button_xpath: str = (
             '//input[@type="button"][@value="Search Jobs"]',
