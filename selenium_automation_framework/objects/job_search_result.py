@@ -6,15 +6,13 @@ class JobSearchResult:
 
     def __init__(
         self,
-        job_title: str | None,
-        job_description: str | None,
-        company: str | None,
-        date_posted: str | None,
+        url=None,
     ):
         self._job_title: str = job_title
         self._job_description: str = job_description
         self._company: str = company
         self._date_posted: str = date_posted
+        self._url: str = url
 
     ###########################JOB TITLE################################
     @property
@@ -71,3 +69,17 @@ class JobSearchResult:
     @date_posted.setter
     def date_posted(self, updated_date_posted: str):
         self._date_posted = updated_date_posted
+
+    ###########################URL##############################
+    @property
+    def url(self) -> str:
+        """_summary_: property to store job url opening
+
+        Returns:
+            str: url of the job opening
+        """
+        return self._url
+
+    @url.setter
+    def url(self, url: str):
+        self._url = url
