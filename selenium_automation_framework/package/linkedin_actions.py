@@ -5,6 +5,7 @@ from selenium.webdriver.remote.webelement import WebElement
 from ..interfaces.switcher import (
     use_determiner,
 )
+from ..objects.job_search_result import JobSearchResult
 
 
 class LinkedInActions:
@@ -41,3 +42,35 @@ class LinkedInActions:
 
         # implicitly waits for 5 seconds
         self.properties.driver.implicitly_wait(5)
+
+    def store_job_results(self) -> list[JobSearchResult]:
+        """_summary_: returns a list of JobSearchResult object class to extract
+            job details of search results
+
+        Returns:
+            list[JobSearchResult]: a list of Job Result object class that is filled
+                up with job details per class
+        """
+        job_search_results: list[JobSearchResult] = []
+
+        # loops through the job results and extracts the job title, description and company
+        for result in self.properties.search_results_elements:
+            result.click()
+            JobSearchResult(
+                job_title=self.properties.get_element_xpath(
+                    self.properties.result_job_title_xpath, self.properties.driver
+                ).text,
+                # need logic on how to split html elements within the job description element
+                job_description=self.properties.get_element_xpath(
+                    self.properties.result_job_description_xpath, self.properties.driver
+                ).text,
+                company=self.properties.get_element_xpath(
+                    self.properties.result_job_company_xpath, self.properties.driver
+                ).text,
+                date_posted=None,
+                url=self.properties.get_element_xpath(
+                    self.properties.url_xpath, self.properties.driver
+                ).get_attribute("href"),
+            )
+
+        return job_search_results
