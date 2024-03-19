@@ -27,10 +27,15 @@ from .ui_job_search.ui_linkedin_job_search import UILinkedInJobSearch
 
 # from ui_job_results folder
 from .ui_job_results.ui_job_results_mock_website import UIJobResultsMockWebsite
+from .ui_job_results.ui_job_results_linkedin import UIJobResultsLinkedIn
 
 
 class LinkedInPropertiesSwitcher(
-    LinkedInLogin, LinkedInLoginProperties, LinkedInLoginUI, UILinkedInJobSearch
+    LinkedInLogin,
+    LinkedInLoginProperties,
+    LinkedInLoginUI,
+    UILinkedInJobSearch,
+    UIJobResultsLinkedIn,
 ):
     """_summary_: Inherits all properties from LinkedInLogin,
     LinkedInLoginProperties, LinkedInLoginUI"""
@@ -40,6 +45,7 @@ class LinkedInPropertiesSwitcher(
         LinkedInLoginProperties.__init__(self)
         LinkedInLoginUI.__init__(self, driver)
         UILinkedInJobSearch.__init__(self, driver)
+        UIJobResultsLinkedIn.__init__(self, driver)
 
 
 class JobSearchWebsitePropertiesSwitcher(
