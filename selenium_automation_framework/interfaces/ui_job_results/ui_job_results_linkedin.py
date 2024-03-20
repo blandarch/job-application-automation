@@ -18,7 +18,7 @@ class UIJobResultsLinkedIn(UIJobResultsInterface):
     ):
         super().__init__(
             driver,
-            results_search_text_xpath='//input[contains(@class, "jobs-search-box")]',
+            results_search_text_xpath='//input[contains(@id, "jobs-search-box-keyword-id")]',
             search_results_xpath='//li[contains(@id, "ember")][not(contains(@class, "artdeco"))]',
             result_job_title_xpath='/h2[contains(@class, "job-title")]/a/span',
             result_job_description_xpath='//div[@id="job-details"]//span/p | //span/ul',
