@@ -116,7 +116,7 @@ class UIJobResultsInterface:
         self._result_job_company_xpath = xpath
 
     @staticmethod
-    def get_element_xpath(xpath: str, driver: webdriver.Chrome) -> WebElement:
+    def get_web_element(xpath: str, driver: webdriver.Chrome) -> WebElement:
         """_summary_: method to use to get element xpath with the concatonated xpaths
             from job results
 

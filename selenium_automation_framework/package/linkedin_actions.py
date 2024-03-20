@@ -58,18 +58,15 @@ class LinkedInActions:
         for result in self.properties.search_results_elements:
             result.click()
             JobSearchResult(
-                job_title=self.properties.get_element_xpath(
+                job_title=self.properties.get_web_element(
                     self.properties.result_job_title_xpath, self.properties.driver
                 ).text,
                 # need logic on how to split html elements within the job description element
-                job_description=self.properties.get_element_xpath(
-                    self.properties.result_job_description_xpath, self.properties.driver
-                ).text,
-                company=self.properties.get_element_xpath(
+                company=self.properties.get_web_element(
                     self.properties.result_job_company_xpath, self.properties.driver
                 ).text,
                 date_posted=None,
-                url=self.properties.get_element_xpath(
+                url=self.properties.get_web_element(
                     self.properties.url_xpath, self.properties.driver
                 ).get_attribute("href"),
             )
