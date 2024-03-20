@@ -128,3 +128,17 @@ class UIJobResultsInterface:
             WebElement: Web Element retrieved
         """
         return driver.find_element(By.XPATH, xpath)
+
+    @staticmethod
+    def get_web_elements(xpath: str, driver: webdriver.Chrome) -> list[WebElement]:
+        """_summary_: method to use to get elements with the concatonated xpaths
+            from job results
+
+        Args:
+            xpath (str): xpath as basis to find web element
+            driver (webdriver.Chrome): driver that orchestrates the automation
+
+        Returns:
+            WebElement: list of Web Elements retrieved
+        """
+        return driver.find_elements(By.XPATH, xpath)
