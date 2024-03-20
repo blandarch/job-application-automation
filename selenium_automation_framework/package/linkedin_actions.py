@@ -74,3 +74,36 @@ class LinkedInActions:
             )
 
         return job_search_results
+
+    def concatenate_job_description(
+        self, job_description_elements: list[WebElement]
+    ) -> str:
+        """_summary_: action method to use to concatenate Job Description texts from
+            LinkedIn from the children elements
+
+        Args:
+            job_description_elements (list[WebElement]): the overall job description parent
+                element which will be the basis for the project to loop over
+
+        Returns:
+            str: the combined text from job description from different elements
+        """
+        # initialises empty string to be concatenated
+        job_description_text = ""
+
+        # loops through the the job description elements to add text to job_description_text
+        for element in job_description_elements:
+            # if tag name is "/p" then it will just concatenate the text that is available
+            if element.tag_name == "p" and (
+                element.text is not None and element.text != ""
+            ):
+                job_description_text += element.text + "\n\n"
+            # if tag is /ul, if will loop inside the /li elements to add the bullets inside the ul tag
+            elif element.tag_name == "ul" and (
+                element.text is not None and element.text != ""
+            ):
+                ul_children = element.find_elements(By.XPATH, "./li")
+                bullet_texts = [li.text for li in ul_children]
+                job_description_text += "\n".join(bullet_texts)
+
+        return job_description_text
