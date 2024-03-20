@@ -36,6 +36,8 @@ class LinkedInActions:
         """
         # clicks the Jobs Web Element after logging in
         self.properties.jobs_button_element.click()
+        # implicitly waits for 3 seconds
+        self.properties.driver.implicitly_wait(3)
 
         # inputs job search text and presses enter
         self.properties.search_text_element.send_keys(search_text)
