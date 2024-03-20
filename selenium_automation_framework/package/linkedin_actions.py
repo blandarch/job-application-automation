@@ -58,7 +58,7 @@ class LinkedInActions:
         for result in self.properties.search_results_elements:
             result.click()
 
-            JobSearchResult(
+            job_search_result = JobSearchResult(
                 job_title=self.properties.get_web_element(
                     self.properties.result_job_title_xpath, self.properties.driver
                 ).text,
@@ -77,6 +77,7 @@ class LinkedInActions:
                     self.properties.url_xpath, self.properties.driver
                 ).get_attribute("href"),
             )
+            job_search_results.append(job_search_result)
 
         return job_search_results
 
