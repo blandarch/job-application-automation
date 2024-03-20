@@ -57,11 +57,18 @@ class LinkedInActions:
         # loops through the job results and extracts the job title, description and company
         for result in self.properties.search_results_elements:
             result.click()
+
             JobSearchResult(
                 job_title=self.properties.get_web_element(
                     self.properties.result_job_title_xpath, self.properties.driver
                 ).text,
                 # need logic on how to split html elements within the job description element
+                job_description=self.concatenate_job_description(
+                    self.properties.get_web_elements(
+                        self.properties.result_job_description_xpath,
+                        self.properties.driver,
+                    )
+                ),
                 company=self.properties.get_web_element(
                     self.properties.result_job_company_xpath, self.properties.driver
                 ).text,
