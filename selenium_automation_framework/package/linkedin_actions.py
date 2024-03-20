@@ -41,7 +41,7 @@ class LinkedInActions:
 
         # inputs job search text and presses enter
         self.properties.search_text_element.send_keys(search_text)
-        self.properties.search_button_element.send_keys(Keys.ENTER)
+        self.properties.search_text_element.send_keys(Keys.ENTER)
 
         # implicitly waits for 5 seconds
         self.properties.driver.implicitly_wait(5)
