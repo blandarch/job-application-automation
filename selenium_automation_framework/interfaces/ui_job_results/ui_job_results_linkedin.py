@@ -24,7 +24,7 @@ class UIJobResultsLinkedIn(UIJobResultsInterface):
             result_job_description_xpath='//div[@id="job-details"]//span/p | //span/ul',
             result_job_company_xpath='//a[@class="app-aware-link "][contains(@href, "/company/")]',
         )
-        self._url_xpath = '//h2[contains(@class, "job-title")]/a/'
+        self._url_xpath = '//h2[contains(@class, "job-title")]/a'
 
     @property
     def url_xpath(self) -> str:
