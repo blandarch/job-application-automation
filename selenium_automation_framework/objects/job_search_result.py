@@ -6,10 +6,10 @@ class JobSearchResult:
 
     def __init__(
         self,
-        job_title: str | None,
-        job_description: str | None,
-        company: str | None,
-        date_posted: str | None,
+        job_title: str | None = None,
+        job_description: str | None = None,
+        company: str | None = None,
+        date_posted: str | None = None,
     ):
         self._job_title: str = job_title
         self._job_description: str = job_description
