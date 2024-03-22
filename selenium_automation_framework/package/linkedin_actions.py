@@ -3,9 +3,9 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.remote.webelement import WebElement
-from ..interfaces.switcher import (
-    use_determiner,
-)
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from ..interfaces.switcher import use_determiner
 from ..objects.job_search_result import JobSearchResult
 
 
@@ -60,24 +60,33 @@ class LinkedInActions:
         for result in self.properties.search_results_elements:
             result.click()
 
+            job_title_element = WebDriverWait(self.properties.driver, 10).until(
+                EC.presence_of_element_located(
+                    (By.XPATH, self.properties.result_job_title_xpath)
+                )
+            )
+            job_description_elements = WebDriverWait(self.properties.driver, 10).until(
+                EC.presence_of_all_elements_located(
+                    (By.XPATH, self.properties.result_job_description_xpath)
+                )
+            )
+            company_element = WebDriverWait(self.properties.driver, 10).until(
+                EC.presence_of_element_located(
+                    (By.XPATH, self.properties.result_job_company_xpath)
+                )
+            )
+            job_url_element = WebDriverWait(self.properties.driver, 10).until(
+                EC.presence_of_element_located((By.XPATH, self.properties.url_xpath))
+            )
+
             job_search_result = JobSearchResult(
-                job_title=self.properties.get_web_element(
-                    self.properties.result_job_title_xpath, self.properties.driver
-                ).text,
-                # need logic on how to split html elements within the job description element
+                job_title=job_title_element.text,
                 job_description=self.concatenate_job_description(
-                    self.properties.get_web_elements(
-                        self.properties.result_job_description_xpath,
-                        self.properties.driver,
-                    )
+                    job_description_elements
                 ),
-                company=self.properties.get_web_element(
-                    self.properties.result_job_company_xpath, self.properties.driver
-                ).text,
+                company=company_element.text,
                 date_posted=None,
-                url=self.properties.get_web_element(
-                    self.properties.url_xpath, self.properties.driver
-                ).get_attribute("href"),
+                url=job_url_element.get_attribute("href"),
             )
             job_search_results.append(job_search_result)
 
@@ -102,16 +111,32 @@ class LinkedInActions:
         # loops through the the job description elements to add text to job_description_text
         for element in job_description_elements:
             # if tag name is "/p" then it will just concatenate the text that is available
-            if element.tag_name == "p" and (
-                element.text is not None and element.text != ""
-            ):
-                job_description_text += element.text + "\n\n"
+            if element.tag_name == "p":
+                p_text = element.find_element(By.XPATH, "./text()")
+                job_description_text += p_text.text + "\n\n"
             # if tag is /ul, if will loop inside the /li elements to add the bullets inside the ul tag
-            elif element.tag_name == "ul" and (
-                element.text is not None and element.text != ""
-            ):
-                ul_children = element.find_elements(By.XPATH, "./li")
-                bullet_texts = [li.text for li in ul_children]
+            elif element.tag_name == "ul":
+                # try:
+                bullet_texts = []
+                ul_children = element.find_elements(By.XPATH, "./span/li/text()")
+                # except StaleElementReferenceException:
+                #     ul_children = element.find_elements(By.XPATH, ".//li")
+                # ul_children = element.find_elements(By.XPATH, "./li")
+                # ul_children = WebDriverWait(self.properties.driver, 10).until(
+                #     EC.visibility_of_all_elements_located((By.XPATH, ".//li"))
+                #     # EC.visibility_of_all_elements_located()
+                # )
+                # bullet_texts = [li.text for li in ul_children if li.text]
+                for li in ul_children:
+                    # li.find_element(
+                    #     By.XPATH,
+                    #     '//*[@id="job-details"]/span/span[11]/ul/span[1]/li/text()',
+                    # )
+                    # li = self.properties.driver.find_element(
+                    #     By.XPATH,
+                    #     '//ul/span/li/text()',
+                    # )
+                    bullet_texts.append(li.text)
                 job_description_text += "\n".join(bullet_texts)
 
         return job_description_text
